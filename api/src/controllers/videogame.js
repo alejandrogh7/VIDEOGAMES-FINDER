@@ -4,6 +4,23 @@ const { v4: uuidv4 } = require("uuid");
 const { validate: uuidValidate } = require("uuid");
 const axios = require("axios");
 
+const getApiVideogames = async () => {
+  const info1 = await axios.get(
+    `https://api.rawg.io/api/games?key=${API_KEY}&page=1&page_size=40`
+  );
+  const info2 = await axios.get(
+    `https://api.rawg.io/api/games?key=${API_KEY}&page=2&page_size=40`
+  );
+  const info3 = await axios.get(
+    `https://api.rawg.io/api/games?key=${API_KEY}&page=3&page_size=40`
+  );
+  const apiVideogames = info1.data.results.concat(
+    info2.data.results,
+    info3.data.results
+  );
+  return apiVideogames;
+};
+
 const getAllVideoGames = async (req, res, next) => {
   const { name } = req.query;
   let videogame = [];
@@ -14,15 +31,15 @@ const getAllVideoGames = async (req, res, next) => {
         as: "genres",
       },
     });
-    const apiVideogames = await axios.get(
-      `https://api.rawg.io/api/games?key=${API_KEY}&page_size=100`
-    );
-    const getAllVideoGames = apiVideogames.data.results.concat(myVideogames);
+    const apiVideogames = await getApiVideogames();
+    //console.log(apiVideogames.length);
+    const getAllVideoGames = apiVideogames.concat(myVideogames);
     if (name) {
-      videogame = getAllVideoGames.filter(
-        (game) => game.name.toLowerCase().includes(name.toLowerCase())
+      videogame = getAllVideoGames.filter((game) =>
+        game.name.toLowerCase().includes(name.toLowerCase())
       );
     }
+
     return res
       .status(200)
       .json(videogame.length > 0 ? videogame : getAllVideoGames);
