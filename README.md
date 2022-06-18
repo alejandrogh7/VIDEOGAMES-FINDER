@@ -184,7 +184,7 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 - [ X ] __POST /videogames__:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
   - Crea un videojuego en la base de datos, relacionado a sus géneros.
-- [ ] __GET /genres__:
+- [ X ] __GET /genres__:
   - Obtener todos los tipos de géneros de videojuegos posibles
   - En una primera instancia deberán traerlos desde rawg y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
 
