@@ -25,7 +25,6 @@ const getApiVideogames = async () => {
       image: videogame.background_image,
       released: videogame.released,
       rating: videogame.rating,
-      platforms: videogame.platforms,
     };
   });
 
