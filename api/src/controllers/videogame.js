@@ -74,8 +74,19 @@ const addVideogame = async (req, res, next) => {
   }
 };
 
+const addGenreToVideogame = async (req, res, next) => {
+  const { videoId, genreId } = req.params;
+  try {
+    const myVideogames = await Videogame.findByPk(videoId);
+    res.status(200).json(await myVideogames.addGenre(genreId));
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllVideoGames,
   getById,
   addVideogame,
+  addGenreToVideogame,
 };

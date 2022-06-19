@@ -174,7 +174,7 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 - [ X ] __GET /videogames__:
   - Obtener un listado de los videojuegos
   - Debe devolver solo los datos necesarios para la ruta principal
-- [  ] __GET /videogames?name="..."__:
+- [ X ] __GET /videogames?name="..."__:
   - Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
   - Si no existe ningún videojuego mostrar un mensaje adecuado
 - [ X ] __GET /videogame/{idVideogame}__:
