@@ -48,11 +48,12 @@ const getAllVideoGames = async (req, res, next) => {
       videogame = getAllVideoGames.filter((game) =>
         game.name.toLowerCase().includes(name.toLowerCase())
       );
+      if (videogame.length === 0) videogame = ["Game not found"];
     }
 
     return res
       .status(200)
-      .json(videogame.length > 0 ? videogame : ["Game not found"]);
+      .json(videogame.length > 0 ? videogame : apiVideogames);
   } catch (error) {
     next(error);
   }
