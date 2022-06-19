@@ -18,7 +18,17 @@ const getApiVideogames = async () => {
     info2.data.results,
     info3.data.results
   );
-  return apiVideogames;
+  const apiFilter = apiVideogames.map((videogame) => {
+    return {
+      id: videogame.id,
+      name: videogame.name,
+      released: videogame.released,
+      rating: videogame.rating,
+      platforms: videogame.platforms,
+    };
+  });
+
+  return apiFilter;
 };
 
 const getAllVideoGames = async (req, res, next) => {
@@ -42,7 +52,7 @@ const getAllVideoGames = async (req, res, next) => {
 
     return res
       .status(200)
-      .json(videogame.length > 0 ? videogame : getAllVideoGames);
+      .json(videogame.length > 0 ? videogame : ["Game not found"]);
   } catch (error) {
     next(error);
   }
