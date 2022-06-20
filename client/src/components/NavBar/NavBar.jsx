@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { getByName, getVideogames } from "../../redux/actions/actions.js";
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
+
   const handlerOnChange = (e) => {
     e.preventDefault();
     setInput(e.target.value);
@@ -13,12 +15,15 @@ const NavBar = () => {
 
   const handlerOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(getVideogames);
+    dispatch(getByName(input));
     setInput("");
   };
 
   return (
-    <div>
+    <nav>
+      <div>
+        <NavLink to="/create">Create</NavLink>
+      </div>
       <input
         type="text"
         placeholder="Search videogame"
@@ -30,7 +35,7 @@ const NavBar = () => {
         value="SEARCH"
         onSubmit={(e) => handlerOnSubmit(e)}
       />
-    </div>
+    </nav>
   );
 };
 
