@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { postVideogame } from "../../redux/actions/actions.js";
+import { useDispatch } from "react-redux";
 
 const VideogameForm = () => {
+  const dispatch = useDispatch();
+
   const [inputs, setInputs] = useState({
     name: "",
     description: "",
@@ -19,7 +23,7 @@ const VideogameForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    dispatch(postVideogame(inputs));
     setInputs({
       name: "",
       description: "",

@@ -1,7 +1,13 @@
-import { GET_VIDEOGAMES, GET_BY_NAME } from "../actions-types/actions-types.js";
+import {
+  GET_VIDEOGAMES,
+  GET_BY_NAME,
+  POST_VIDEOGAME,
+  GET_BY_ID,
+} from "../actions-types/actions-types.js";
 
 const initialState = {
   videogames: [],
+  videogame: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -15,6 +21,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         videogames: action.payload,
+      };
+    case POST_VIDEOGAME:
+      return {
+        ...state,
+      };
+    case GET_BY_ID:
+      return {
+        ...state,
+        videogame: action.payload,
       };
     default:
       return {
