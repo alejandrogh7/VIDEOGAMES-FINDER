@@ -2,7 +2,6 @@ import axios from "axios";
 import {
   GET_VIDEOGAMES,
   GET_BY_NAME,
-  POST_VIDEOGAME,
   GET_BY_ID,
 } from "../actions-types/actions-types.js";
 

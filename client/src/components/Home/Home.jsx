@@ -12,7 +12,7 @@ const Home = () => {
   };
   useEffect(() => {
     getData();
-  }, [dispatch]);
+  }, []);
   return (
     <div>
       <NavBar />

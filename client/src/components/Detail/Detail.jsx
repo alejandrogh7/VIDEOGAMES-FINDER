@@ -7,8 +7,6 @@ const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const videogame = useSelector((state) => state.videogame);
-  const parser = new DOMParser();
-  const document = parser.parseFromString(videogame.description, "text/html");
 
   useEffect(() => {
     dispatch(getById(id));
@@ -24,7 +22,19 @@ const Detail = () => {
         width="500px"
       />
       <h2>released: {videogame.released}</h2>
-      {document}
+      <div dangerouslySetInnerHTML={{ __html: videogame.description }}></div>
+      <h1>Platforms</h1>
+      {videogame.platforms
+        ? videogame.platforms.map((vg) => {
+            return <div key={vg.platform.id}>{vg.platform.name}</div>;
+          })
+        : null}
+      <h1>Stores</h1>
+      {videogame.stores
+        ? videogame.stores.map((st) => {
+            return <div key={st.store.id}>{st.store.name}</div>;
+          })
+        : null}
     </div>
   );
 };
