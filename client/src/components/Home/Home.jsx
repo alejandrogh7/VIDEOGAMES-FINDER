@@ -11,7 +11,7 @@ const Home = () => {
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [dataPerPage, setdataPerPage] = useState(5);
+  const [dataPerPage, setdataPerPage] = useState(15);
   //get current data
   const indexOfLastData = currentPage * dataPerPage;
   const indexOfFirstData = indexOfLastData - dataPerPage;
@@ -23,7 +23,7 @@ const Home = () => {
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

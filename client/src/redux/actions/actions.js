@@ -3,6 +3,8 @@ import {
   GET_VIDEOGAMES,
   GET_BY_NAME,
   GET_BY_ID,
+  ORDER_ASC,
+  ORDER_DESC,
 } from "../actions-types/actions-types.js";
 
 export const getVideogames = () => {
@@ -44,5 +46,17 @@ export const getById = (id) => {
       type: GET_BY_ID,
       payload: response.data,
     });
+  };
+};
+
+export const orderAsc = () => {
+  return {
+    type: ORDER_ASC,
+  };
+};
+
+export const orderDesc = () => {
+  return {
+    type: ORDER_DESC,
   };
 };
