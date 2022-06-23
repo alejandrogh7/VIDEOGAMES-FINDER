@@ -7,17 +7,46 @@ import { useSelector, useDispatch } from "react-redux";
 const Home = () => {
   const dispatch = useDispatch();
   const videogames = useSelector((state) => state.videogames);
+
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(5);
+
   const getData = () => {
     return dispatch(getVideogames());
   };
   useEffect(() => {
+    setLoading(true);
     getData();
+    setLoading(false);
   }, []);
+
+  //get current post
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPosts = videogames.slice(indexOfFirstPost, indexOfLastPost);
+
+  //pagination
+  const totalPost = videogames.length;
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalPost / postPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  const paginate = (number) => {
+    setCurrentPage(number);
+  };
   return (
     <div>
       <NavBar />
-      {videogames &&
-        videogames.map((videogame) => {
+      <nav>
+        {pageNumbers.map((number) => (
+          <li key={number}>
+            <ul onClick={() => paginate(number)}>{number}</ul>
+          </li>
+        ))}
+      </nav>
+      {currentPosts &&
+        currentPosts.map((videogame) => {
           return (
             <VideogameCard
               key={videogame.id}
