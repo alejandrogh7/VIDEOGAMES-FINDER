@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import VideogameCard from "../VideogameCard/VideogameCard.jsx";
 import NavBar from "../NavBar/NavBar.jsx";
-import { getVideogames } from "../../redux/actions/actions.js";
+import {
+  getVideogames,
+  orderAsc,
+  orderDesc,
+} from "../../redux/actions/actions.js";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../Pagination/Pagination.jsx";
 
 const Home = () => {
   const dispatch = useDispatch();
   const videogames = useSelector((state) => state.videogames);
-
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage, setdataPerPage] = useState(15);
@@ -17,6 +20,8 @@ const Home = () => {
   const indexOfFirstData = indexOfLastData - dataPerPage;
   const currentData = videogames.slice(indexOfFirstData, indexOfLastData);
   const totalData = videogames.length;
+  //order
+  const [order, setOrder] = useState("");
 
   const getData = () => {
     return dispatch(getVideogames());
@@ -27,7 +32,7 @@ const Home = () => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <Pagination
         totalData={totalData}
         dataPerPage={dataPerPage}

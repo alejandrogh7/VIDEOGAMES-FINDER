@@ -27,6 +27,7 @@ const getApiVideogames = async () => {
       rating: videogame.rating,
       genres: videogame.genres.map((genre) => genre.name),
       platforms: videogame.platforms.map((platform) => platform.platform.name),
+      created: false,
     };
   });
 
@@ -45,7 +46,7 @@ const getAllVideoGames = async (req, res, next) => {
     });
     const apiVideogames = await getApiVideogames();
     //console.log(apiVideogames.length);
-    const getAllVideoGames = apiVideogames.concat(myVideogames);
+    const getAllVideoGames = myVideogames.concat(apiVideogames);
     if (name) {
       videogame = getAllVideoGames.filter((game) =>
         game.name.toLowerCase().includes(name.toLowerCase())
@@ -55,7 +56,7 @@ const getAllVideoGames = async (req, res, next) => {
 
     return res
       .status(200)
-      .json(videogame.length > 0 ? videogame : apiVideogames);
+      .json(videogame.length > 0 ? videogame : getAllVideoGames);
   } catch (error) {
     next(error);
   }

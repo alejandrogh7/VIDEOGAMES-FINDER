@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import girar from "../../utils/gira-a-la-derecha.svg";
 
-const NavBar = () => {
+const NavBar = ({ setCurrentPage, setOrder }) => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
@@ -38,12 +38,15 @@ const NavBar = () => {
     dispatch(getGenres());
   }, [dispatch]);
 
-  // const handleSort = (e) => {
-  //   e.preventDefault();
-  //   if (e.target.value === "All") return dispatch(getVideogames());
-  //   if (e.target.value === "Asc") return dispatch(orderAsc());
-  //   if (e.target.value === "Desc") return dispatch(orderDesc());
-  // };
+  const handleSort = (e) => {
+    e.preventDefault();
+    if (e.target.value === "...") return;
+    if (e.target.value === "All") dispatch(getVideogames());
+    if (e.target.value === "Asc") dispatch(orderAsc());
+    if (e.target.value === "Desc") dispatch(orderDesc());
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  };
 
   const handleFilter = (e) => {
     e.preventDefault();
@@ -70,11 +73,12 @@ const NavBar = () => {
             );
           })}
       </select>
-      {/* <select onClick={(e) => handleSort(e)}>
+      <select onClick={(e) => handleSort(e)}>
+        <option value="...">...</option>
         <option value="All">All</option>
         <option value="Asc">Asc</option>
         <option value="Desc">Desc</option>
-      </select> */}
+      </select>
       <input
         type="text"
         placeholder="Search videogame"
