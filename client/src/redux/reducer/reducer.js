@@ -5,11 +5,14 @@ import {
   GET_BY_ID,
   ORDER_ASC,
   ORDER_DESC,
+  GET_GENRES,
+  GET_BY_GENRE,
 } from "../actions-types/actions-types.js";
 
 const initialState = {
   videogames: [],
   videogame: {},
+  genres: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -52,6 +55,19 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         videogames: sortedDesc,
+      };
+    case GET_GENRES:
+      return {
+        ...state,
+        genres: action.payload,
+      };
+    case GET_BY_GENRE:
+      const filt = state.videogames.filter((game) =>
+        game.genres.includes(action.payload)
+      );
+      return {
+        ...state,
+        videogames: filt,
       };
     default:
       return {

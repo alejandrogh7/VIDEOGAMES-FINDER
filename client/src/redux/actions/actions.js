@@ -5,6 +5,8 @@ import {
   GET_BY_ID,
   ORDER_ASC,
   ORDER_DESC,
+  GET_GENRES,
+  GET_BY_GENRE,
 } from "../actions-types/actions-types.js";
 
 export const getVideogames = () => {
@@ -58,5 +60,22 @@ export const orderAsc = () => {
 export const orderDesc = () => {
   return {
     type: ORDER_DESC,
+  };
+};
+
+export const getGenres = () => {
+  return async (dispatch) => {
+    const response = await axios.get("http://localhost:3001/genres");
+    return dispatch({
+      type: GET_GENRES,
+      payload: response.data,
+    });
+  };
+};
+
+export const getByGenre = (genre) => {
+  return {
+    type: GET_BY_GENRE,
+    payload: genre,
   };
 };
