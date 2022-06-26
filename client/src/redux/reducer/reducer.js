@@ -7,6 +7,7 @@ import {
   ORDER_DESC,
   GET_GENRES,
   GET_BY_GENRE,
+  FILTER_BY_CREATED,
 } from "../actions-types/actions-types.js";
 
 const initialState = {
@@ -68,6 +69,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         videogames: filt,
+      };
+    case FILTER_BY_CREATED:
+      let filtCreated = state.videogames.filter(
+        (game) => game.created === action.payload
+      );
+      return {
+        ...state,
+        videogames: filtCreated,
       };
     default:
       return {

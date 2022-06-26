@@ -7,6 +7,7 @@ import {
   ORDER_DESC,
   GET_GENRES,
   GET_BY_GENRE,
+  FILTER_BY_CREATED,
 } from "../actions-types/actions-types.js";
 
 export const getVideogames = () => {
@@ -77,5 +78,12 @@ export const getByGenre = (genre) => {
   return {
     type: GET_BY_GENRE,
     payload: genre,
+  };
+};
+
+export const filterByCreated = (created) => {
+  return {
+    type: FILTER_BY_CREATED,
+    payload: created,
   };
 };

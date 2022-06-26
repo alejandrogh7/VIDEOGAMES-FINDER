@@ -6,6 +6,7 @@ import {
   orderDesc,
   getGenres,
   getByGenre,
+  filterByCreated,
 } from "../../redux/actions/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -36,7 +37,7 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
 
   useEffect(() => {
     dispatch(getGenres());
-  }, [dispatch]);
+  }, []);
 
   const handleSort = (e) => {
     e.preventDefault();
@@ -52,6 +53,19 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
     e.preventDefault();
     if (e.target.value === "...") return;
     dispatch(getByGenre(e.target.value));
+  };
+
+  const handleFilterCreated = async (e) => {
+    e.preventDefault();
+    //console.log([e.target.value, typeof e.target.value]);
+    await dispatch(getVideogames());
+    if (e.target.value === "...") return;
+    if (e.target.value === "true") {
+      return dispatch(filterByCreated(true));
+    }
+    if (e.target.value === "false") {
+      return dispatch(filterByCreated(false));
+    }
   };
 
   return (
@@ -78,6 +92,11 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
         <option value="All">All</option>
         <option value="Asc">Asc</option>
         <option value="Desc">Desc</option>
+      </select>
+      <select onClick={(e) => handleFilterCreated(e)}>
+        <option value="...">...</option>
+        <option value="true">Created</option>
+        <option value="false">Api</option>
       </select>
       <input
         type="text"

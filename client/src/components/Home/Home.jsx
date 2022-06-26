@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import VideogameCard from "../VideogameCard/VideogameCard.jsx";
 import NavBar from "../NavBar/NavBar.jsx";
-import {
-  getVideogames,
-  orderAsc,
-  orderDesc,
-} from "../../redux/actions/actions.js";
+import { getVideogames } from "../../redux/actions/actions.js";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../Pagination/Pagination.jsx";
 

@@ -6,3 +6,4 @@ export const ORDER_ASC = "ORDER_ASC";
 export const ORDER_DESC = "ORDER_DESC";
 export const GET_GENRES = "GET_GENRES";
 export const GET_BY_GENRE = "GET_BY_GENRE";
+export const FILTER_BY_CREATED = "FILTER_BY_CREATED";
