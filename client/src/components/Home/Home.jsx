@@ -44,6 +44,7 @@ const Home = () => {
               image={videogame.image}
               released={videogame.released}
               rating={videogame.rating}
+              genre={videogame.genres}
             />
           );
         })}

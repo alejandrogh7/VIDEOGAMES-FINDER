@@ -11,6 +11,9 @@ const VideogameCard = (props) => {
         </div>
         <h2>{props.rating}</h2>
         <h3>{props.released}</h3>
+        {props.genre.map((genr) => {
+          return <h3>{genr}</h3>;
+        })}
       </NavLink>
     </div>
   );

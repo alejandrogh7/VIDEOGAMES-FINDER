@@ -7,6 +7,8 @@ import {
   getGenres,
   getByGenre,
   filterByCreated,
+  orderRatingAsc,
+  orderRatingDesc,
 } from "../../redux/actions/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -68,6 +70,15 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
     }
   };
 
+  const handleRateSort = (e) => {
+    e.preventDefault();
+    if (e.target.value === "...") return;
+    if (e.target.value === "RatingAsc") dispatch(orderRatingAsc());
+    if (e.target.value === "RatingDesc") dispatch(orderRatingDesc());
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  };
+
   return (
     <nav>
       <div>
@@ -97,6 +108,11 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
         <option value="...">...</option>
         <option value="true">Created</option>
         <option value="false">Api</option>
+      </select>
+      <select onClick={(e) => handleRateSort(e)}>
+        <option value="...">...</option>
+        <option value="RatingAsc">Rating Asc</option>
+        <option value="RatingDesc">Rating Desc</option>
       </select>
       <input
         type="text"

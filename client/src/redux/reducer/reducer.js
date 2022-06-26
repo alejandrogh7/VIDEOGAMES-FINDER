@@ -8,6 +8,8 @@ import {
   GET_GENRES,
   GET_BY_GENRE,
   FILTER_BY_CREATED,
+  ORDER_RATING_ASC,
+  ORDER_RATING_DESC,
 } from "../actions-types/actions-types.js";
 
 const initialState = {
@@ -77,6 +79,26 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         videogames: filtCreated,
+      };
+    case ORDER_RATING_ASC:
+      let sortedRatAsc = state.videogames.sort((a, b) => {
+        if (a.rating > b.rating) return 1;
+        if (a.rating < b.rating) return -1;
+        return 0;
+      });
+      return {
+        ...state,
+        videogames: sortedRatAsc,
+      };
+    case ORDER_RATING_DESC:
+      let sortedRatDesc = state.videogames.sort((a, b) => {
+        if (a.rating < b.rating) return 1;
+        if (a.rating > b.rating) return -1;
+        return 0;
+      });
+      return {
+        ...state,
+        videogames: sortedRatDesc,
       };
     default:
       return {

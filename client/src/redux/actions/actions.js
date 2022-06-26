@@ -8,6 +8,8 @@ import {
   GET_GENRES,
   GET_BY_GENRE,
   FILTER_BY_CREATED,
+  ORDER_RATING_ASC,
+  ORDER_RATING_DESC,
 } from "../actions-types/actions-types.js";
 
 export const getVideogames = () => {
@@ -85,5 +87,17 @@ export const filterByCreated = (created) => {
   return {
     type: FILTER_BY_CREATED,
     payload: created,
+  };
+};
+
+export const orderRatingAsc = () => {
+  return {
+    type: ORDER_RATING_ASC,
+  };
+};
+
+export const orderRatingDesc = () => {
+  return {
+    type: ORDER_RATING_DESC,
   };
 };
