@@ -60,12 +60,13 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
   const handleFilterCreated = async (e) => {
     e.preventDefault();
     //console.log([e.target.value, typeof e.target.value]);
-    await dispatch(getVideogames());
     if (e.target.value === "...") return;
     if (e.target.value === "true") {
+      await dispatch(getVideogames());
       return dispatch(filterByCreated(true));
     }
     if (e.target.value === "false") {
+      await dispatch(getVideogames());
       return dispatch(filterByCreated(false));
     }
   };

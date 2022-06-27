@@ -41,8 +41,8 @@ const VideogameForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(postVideogame(inputs));
-    console.log(saveName);
-    dispatch(getByName(saveName));
+    //console.log(saveName);
+    await dispatch(getByName(saveName));
     setInputs({
       name: "",
       description: "",
@@ -53,8 +53,9 @@ const VideogameForm = () => {
     setShow(false);
   };
 
-  const handleInputsGenres = (e) => {
+  const handleInputsGenres = async (e) => {
     e.preventDefault();
+
     setInputs({
       ...inputs,
       genre: [...inputs.genre, e.target.value],
@@ -63,11 +64,12 @@ const VideogameForm = () => {
 
   const handleSubmitGenres = async (e) => {
     e.preventDefault();
-    await setSaveId(videogames[0].id);
-    //console.log(saveId);
+    setSaveId(videogames[0].id);
+
     inputs.genre.map(
       async (gen) => await dispatch(postGenre(videogames[0].id, gen))
     );
+
     setInputs({
       name: "",
       description: "",
@@ -148,17 +150,13 @@ const VideogameForm = () => {
                 );
               })}
           </select>
-          {inputs &&
-            inputs.genre.map((genre) => {
-              return <p>{genre + " "}</p>;
-            })}
         </div>
         <input type="submit" value="Add genres" />
       </form>
     );
   }
 
-  return <div>MOstrar</div>;
+  return <div>Oops!</div>;
 };
 
 export default VideogameForm;

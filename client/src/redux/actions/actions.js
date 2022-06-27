@@ -11,6 +11,7 @@ import {
   ORDER_RATING_ASC,
   ORDER_RATING_DESC,
   POST_GENRE,
+  GET_GENRE_BY_ID,
 } from "../actions-types/actions-types.js";
 
 export const getVideogames = () => {
@@ -105,7 +106,7 @@ export const orderRatingDesc = () => {
 
 export const postGenre = (videoId, genreId) => {
   return async (dispatch) => {
-    console.log([videoId, genreId]);
+    //console.log([videoId, genreId]);
     const response = await axios.post(
       `http://localhost:3001/videogames/${videoId}/${genreId}`
     );
