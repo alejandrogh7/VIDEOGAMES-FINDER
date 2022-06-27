@@ -10,6 +10,7 @@ import {
   FILTER_BY_CREATED,
   ORDER_RATING_ASC,
   ORDER_RATING_DESC,
+  POST_GENRE,
 } from "../actions-types/actions-types.js";
 
 const initialState = {
@@ -99,6 +100,10 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         videogames: sortedRatDesc,
+      };
+    case POST_GENRE:
+      return {
+        ...state,
       };
     default:
       return {

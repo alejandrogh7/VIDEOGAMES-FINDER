@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const VideogameCard = (props) => {
   return (
-    <div>
+    <div key={props.id}>
       <NavLink to={`/home/${props.id}`}>
         <img src={props.image} alt={props.name} width="300px" />
         <div>
