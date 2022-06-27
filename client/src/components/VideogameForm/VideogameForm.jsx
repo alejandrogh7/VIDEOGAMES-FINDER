@@ -40,17 +40,17 @@ const VideogameForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(postVideogame(inputs));
+    await dispatch(postVideogame(inputs));
     //console.log(saveName);
     await dispatch(getByName(saveName));
-    setInputs({
+    await setInputs({
       name: "",
       description: "",
       rating: 0,
       released: "",
       genre: [],
     });
-    setShow(false);
+    await setShow(false);
   };
 
   const handleInputsGenres = async (e) => {
@@ -110,8 +110,8 @@ const VideogameForm = () => {
             type="range"
             name="rating"
             min="0"
-            max="10"
-            step="0.1"
+            max="5"
+            step="0.01"
             value={inputs.rating}
             onChange={(e) => handleInputsChange(e)}
           />
@@ -150,6 +150,11 @@ const VideogameForm = () => {
                 );
               })}
           </select>
+          {inputs.genre &&
+            genres.map((genre) => {
+              if (inputs.genre.includes(genre.id))
+                return <p key={genre.id}>{genre.name}</p>;
+            })}
         </div>
         <input type="submit" value="Add genres" />
       </form>
