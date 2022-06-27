@@ -19,6 +19,10 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
 
+  useEffect(() => {
+    dispatch(getGenres());
+  }, [dispatch]);
+
   const handlerOnChange = (e) => {
     e.preventDefault();
     setInput(e.target.value);
@@ -36,10 +40,6 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
     dispatch(getVideogames());
     setInput("");
   };
-
-  useEffect(() => {
-    dispatch(getGenres());
-  }, []);
 
   const handleSort = (e) => {
     e.preventDefault();

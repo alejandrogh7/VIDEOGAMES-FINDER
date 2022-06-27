@@ -11,7 +11,7 @@ import {
   ORDER_RATING_ASC,
   ORDER_RATING_DESC,
   POST_GENRE,
-  GET_GENRE_BY_ID,
+  CLEAR_VIDEOGAMES,
 } from "../actions-types/actions-types.js";
 
 export const getVideogames = () => {
@@ -114,5 +114,11 @@ export const postGenre = (videoId, genreId) => {
       type: POST_GENRE,
       payload: response,
     });
+  };
+};
+
+export const clearVideogames = () => {
+  return {
+    type: CLEAR_VIDEOGAMES,
   };
 };

@@ -11,6 +11,7 @@ import {
   ORDER_RATING_ASC,
   ORDER_RATING_DESC,
   POST_GENRE,
+  CLEAR_VIDEOGAMES,
 } from "../actions-types/actions-types.js";
 
 const initialState = {
@@ -110,6 +111,11 @@ const rootReducer = (state = initialState, action) => {
     case POST_GENRE:
       return {
         ...state,
+      };
+    case CLEAR_VIDEOGAMES:
+      return {
+        ...state,
+        videogames: [],
       };
     default:
       return {

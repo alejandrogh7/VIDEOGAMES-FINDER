@@ -19,12 +19,12 @@ const Home = () => {
   //order
   const [order, setOrder] = useState("");
 
-  const getData = () => {
-    return dispatch(getVideogames());
-  };
+  // const getData = () => {
+  //   return dispatch(getVideogames());
+  // };
   useEffect(() => {
-    getData();
-  }, []);
+    dispatch(getVideogames());
+  }, [dispatch]);
 
   return (
     <div>
