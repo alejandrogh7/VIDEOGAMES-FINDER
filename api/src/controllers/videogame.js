@@ -52,7 +52,7 @@ const getAllVideoGames = async (req, res, next) => {
       videogame = getAllVideoGames.filter((game) =>
         game.name.toLowerCase().includes(name.toLowerCase())
       );
-      if (videogame.length === 0) videogame = ["Game not found"];
+      if (videogame.length === 0) videogame = [];
     }
 
     return res
