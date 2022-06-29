@@ -58,8 +58,10 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
   const platforms = useSelector((state) => state.platforms);
   const [saveName, setSaveName] = useState("");
   const [errors, setErrors] = useState({});
+  const [showSubmit, setShowSubmit] = useState(false);
 
   const handleInputsChange = (e) => {
+    setShowSubmit(true);
     e.preventDefault();
     setInputs({
       ...inputs,
@@ -153,6 +155,7 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
       </div>
       <div>
         <div>
+          <label>Platforms:</label>
           <select onChange={(e) => handleInputsPlatforms(e)}>
             <option>...</option>
             {platforms &&
@@ -178,11 +181,13 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
             })}
         </div>
       </div>
-      <input
-        type="submit"
-        value="Create"
-        disabled={!(Object.entries(errors).length === 0)}
-      />
+      {showSubmit ? (
+        <input
+          type="submit"
+          value="Create"
+          disabled={!(Object.entries(errors).length === 0)}
+        />
+      ) : null}
     </form>
   );
 };

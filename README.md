@@ -135,7 +135,7 @@ __Ruta de detalle de videojuego__: debe contener
 
 __Ruta de creación de videojuegos__: debe contener
 
-- [ ] Un formulario __controlado con JavaScript__ con los siguientes campos:
+- [ X ] Un formulario __controlado con JavaScript__ con los siguientes campos:
   - Nombre
   - Descripción
   - Fecha de lanzamiento

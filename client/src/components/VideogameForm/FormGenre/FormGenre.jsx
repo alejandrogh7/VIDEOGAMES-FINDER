@@ -3,19 +3,43 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { postGenre, clearVideogames } from "../../../redux/actions/actions.js";
 
+export function validate(inputs) {
+  let errors = {};
+  if (!inputs.genre) {
+    errors.genre = "Genre is required";
+  } else if (inputs.genre.length < 2) {
+    errors.genre = "Select at least three Genres";
+  }
+
+  return errors;
+}
+
 const FormGenre = ({ inputs, setShow, setInputs }) => {
   const genres = useSelector((state) => state.genres);
   const videogames = useSelector((state) => state.videogames);
 
   const dispatch = useDispatch();
   const [saveId, setSaveId] = useState("");
+  const [errors, setErrors] = useState({});
+  const [showError, setShowError] = useState(false);
+  const [showSubmit, setShowSubmit] = useState(false);
 
   const handleInputsGenres = (e) => {
     e.preventDefault();
+    setShowError(true);
     setInputs({
       ...inputs,
       genre: [...inputs.genre, e.target.value],
     });
+    setErrors(
+      validate({
+        ...inputs,
+        genre: [...inputs.genre, e.target.value],
+      })
+    );
+    if (inputs.genre.length >= 2) {
+      setShowSubmit(true);
+    }
   };
 
   const handleSubmitGenresPlatforms = async (e) => {
@@ -39,9 +63,9 @@ const FormGenre = ({ inputs, setShow, setInputs }) => {
 
   return (
     <form onSubmit={(e) => handleSubmitGenresPlatforms(e)}>
-      <div>
+      {/* <div>
         <NavLink to="/home">GO HOME</NavLink>
-      </div>
+      </div> */}
       <div>
         <label>Add genres:</label>
         <select onChange={(e) => handleInputsGenres(e)}>
@@ -55,6 +79,9 @@ const FormGenre = ({ inputs, setShow, setInputs }) => {
               );
             })}
         </select>
+        {showError
+          ? errors.genre && <p className="danger">{errors.genre}</p>
+          : null}
       </div>
       <div>
         {inputs.genre &&
@@ -63,7 +90,13 @@ const FormGenre = ({ inputs, setShow, setInputs }) => {
               return <p key={genre.id}>{genre.name}</p>;
           })}
       </div>
-      <input type="submit" value="ADD GENRES" />
+      {showSubmit ? (
+        <input
+          type="submit"
+          value="ADD GENRES"
+          disabled={!(Object.entries(errors).length === 0)}
+        />
+      ) : null}
     </form>
   );
 };
