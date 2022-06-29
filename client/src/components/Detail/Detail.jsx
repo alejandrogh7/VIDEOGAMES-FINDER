@@ -30,11 +30,11 @@ const Detail = () => {
           })
         : null}
       <h1>Stores</h1>
-      {videogame.stores
+      {/* {videogame.stores
         ? videogame.stores.map((st) => {
             return <div key={st.store.id}>{st.store.name}</div>;
           })
-        : null}
+        : null} */}
     </div>
   );
 };

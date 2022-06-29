@@ -6,19 +6,19 @@ import { postGenre, clearVideogames } from "../../../redux/actions/actions.js";
 const FormGenre = ({ inputs, setShow, setInputs }) => {
   const genres = useSelector((state) => state.genres);
   const videogames = useSelector((state) => state.videogames);
+
   const dispatch = useDispatch();
   const [saveId, setSaveId] = useState("");
 
-  const handleInputsGenres = async (e) => {
+  const handleInputsGenres = (e) => {
     e.preventDefault();
-
     setInputs({
       ...inputs,
       genre: [...inputs.genre, e.target.value],
     });
   };
 
-  const handleSubmitGenres = async (e) => {
+  const handleSubmitGenresPlatforms = async (e) => {
     e.preventDefault();
     setSaveId(videogames[0].id);
 
@@ -32,11 +32,13 @@ const FormGenre = ({ inputs, setShow, setInputs }) => {
       rating: 0,
       released: "",
       genre: [],
+      platforms: [],
     });
     setShow(true);
   };
+
   return (
-    <form onSubmit={(e) => handleSubmitGenres(e)}>
+    <form onSubmit={(e) => handleSubmitGenresPlatforms(e)}>
       <div>
         <NavLink to="/home">GO HOME</NavLink>
       </div>
@@ -53,13 +55,15 @@ const FormGenre = ({ inputs, setShow, setInputs }) => {
               );
             })}
         </select>
+      </div>
+      <div>
         {inputs.genre &&
           genres.map((genre) => {
             if (inputs.genre.includes(genre.id))
               return <p key={genre.id}>{genre.name}</p>;
           })}
       </div>
-      <input type="submit" value="Add genres" />
+      <input type="submit" value="ADD GENRES" />
     </form>
   );
 };

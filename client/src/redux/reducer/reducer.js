@@ -12,12 +12,14 @@ import {
   ORDER_RATING_DESC,
   POST_GENRE,
   CLEAR_VIDEOGAMES,
+  GET_PLATFORMS,
 } from "../actions-types/actions-types.js";
 
 const initialState = {
   videogames: [],
   videogame: {},
   genres: [],
+  platforms: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -116,6 +118,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         videogames: [],
+      };
+    case GET_PLATFORMS:
+      return {
+        ...state,
+        platforms: action.payload,
       };
     default:
       return {

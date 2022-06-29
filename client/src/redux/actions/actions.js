@@ -12,6 +12,7 @@ import {
   ORDER_RATING_DESC,
   POST_GENRE,
   CLEAR_VIDEOGAMES,
+  GET_PLATFORMS,
 } from "../actions-types/actions-types.js";
 
 export const getVideogames = () => {
@@ -120,5 +121,15 @@ export const postGenre = (videoId, genreId) => {
 export const clearVideogames = () => {
   return {
     type: CLEAR_VIDEOGAMES,
+  };
+};
+
+export const getPlatforms = () => {
+  return async (dispatch) => {
+    const response = await axios.get("http://localhost:3001/genres/platforms/");
+    return dispatch({
+      type: GET_PLATFORMS,
+      payload: response.data,
+    });
   };
 };

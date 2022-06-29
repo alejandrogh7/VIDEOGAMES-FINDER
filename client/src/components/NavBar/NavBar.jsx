@@ -23,15 +23,17 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
     dispatch(getGenres());
   }, [dispatch]);
 
-  const handlerOnChange = (e) => {
+  const handlerOnChange = async (e) => {
     e.preventDefault();
     setInput(e.target.value);
     dispatch(getByName(e.target.value));
+    await setCurrentPage(1);
   };
 
   const handlerOnSubmit = (e) => {
     e.preventDefault();
     dispatch(getByName(input));
+    setCurrentPage(1);
     setInput("");
   };
 
