@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar.jsx";
 import { getVideogames } from "../../redux/actions/actions.js";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../Pagination/Pagination.jsx";
+import "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="home">
       <NavBar setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <Pagination
         totalData={totalData}

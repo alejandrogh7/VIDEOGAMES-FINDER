@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import girar from "../../utils/gira-a-la-derecha.svg";
+import "./NavBar.css";
 
 const NavBar = ({ setCurrentPage, setOrder }) => {
   const [input, setInput] = useState("");
@@ -85,49 +86,63 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
   return (
     <nav>
       <div>
-        <NavLink to="/create">Create</NavLink>
+        <NavLink to="/create" className="create_button">
+          Create
+        </NavLink>
       </div>
-      <button onClick={(e) => handlerOnClick(e)}>
-        <img src={girar} alt="re-start" width="20px" />
-      </button>
-      <select onClick={(e) => handleFilter(e)}>
-        <option value="...">...</option>
-        {genres &&
-          genres.map((genre) => {
-            return (
-              <option value={genre.name} key={genre.id}>
-                {genre.name}
-              </option>
-            );
-          })}
-      </select>
-      <select onClick={(e) => handleSort(e)}>
-        <option value="...">...</option>
-        <option value="All">All</option>
-        <option value="Asc">Asc</option>
-        <option value="Desc">Desc</option>
-      </select>
-      <select onClick={(e) => handleFilterCreated(e)}>
-        <option value="...">...</option>
-        <option value="true">Created</option>
-        <option value="false">Api</option>
-      </select>
-      <select onClick={(e) => handleRateSort(e)}>
-        <option value="...">...</option>
-        <option value="RatingAsc">Rating Asc</option>
-        <option value="RatingDesc">Rating Desc</option>
-      </select>
-      <input
-        type="text"
-        placeholder="Search videogame"
-        value={input}
-        onChange={(e) => handlerOnChange(e)}
-      />
-      <input
-        type="submit"
-        value="SEARCH"
-        onSubmit={(e) => handlerOnSubmit(e)}
-      />
+      <div>
+        <button onClick={(e) => handlerOnClick(e)}>
+          <img src={girar} alt="re-start" width="20px" />
+        </button>
+      </div>
+      <div>
+        <select onClick={(e) => handleFilter(e)}>
+          <option value="...">...</option>
+          {genres &&
+            genres.map((genre) => {
+              return (
+                <option value={genre.name} key={genre.id}>
+                  {genre.name}
+                </option>
+              );
+            })}
+        </select>
+      </div>
+      <div>
+        <select onClick={(e) => handleSort(e)}>
+          <option value="...">...</option>
+          <option value="All">All</option>
+          <option value="Asc">Asc</option>
+          <option value="Desc">Desc</option>
+        </select>
+      </div>
+      <div>
+        <select onClick={(e) => handleFilterCreated(e)}>
+          <option value="...">...</option>
+          <option value="true">Created</option>
+          <option value="false">Api</option>
+        </select>
+      </div>
+      <div>
+        <select onClick={(e) => handleRateSort(e)}>
+          <option value="...">...</option>
+          <option value="RatingAsc">Rating Asc</option>
+          <option value="RatingDesc">Rating Desc</option>
+        </select>
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Search videogame"
+          value={input}
+          onChange={(e) => handlerOnChange(e)}
+        />
+        <input
+          type="submit"
+          value="SEARCH"
+          onSubmit={(e) => handlerOnSubmit(e)}
+        />
+      </div>
     </nav>
   );
 };

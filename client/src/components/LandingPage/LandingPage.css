@@ -1,0 +1,95 @@
+.main-banner {
+  min-height: 100vh;
+  background: url("../../utils/landingpage/Vr_Girl.png") no-repeat center left,
+    linear-gradient(
+      45deg,
+      rgba(238, 174, 202, 1) 0%,
+      rgba(141, 129, 186, 1) 53%,
+      rgba(148, 187, 233, 1) 100%
+    );
+  background-size: contain;
+}
+
+.grid-container {
+  position: absolute;
+  margin-left: 900px;
+}
+.title {
+  position: relative;
+  left: 100px;
+}
+
+.button {
+  position: relative;
+  left: 100px;
+  top: 50px;
+  background: rgb(211, 149, 176);
+  border: 1px solid rgb(123, 111, 168);
+  padding: 5% 10% 5% 10%;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.button:hover {
+    background: rgb(209, 136, 168);
+    border: 1px solid rgb(109, 97, 150);
+    color: rgb(24, 24, 24);
+}
+
+/*images*/
+.image_1_style {
+  position: relative;
+  height: 80px;
+  /* width: 80px; */
+  top: 80px;
+  right: 400px;
+}
+
+.image_1_style:hover {
+  top: 85px;
+}
+
+.image_2_style {
+  position: relative;
+  height: 80px;
+  top: 170px;
+  right: 180px;
+}
+
+.image_2_style:hover {
+  top: 175px;
+}
+
+.image_3_style {
+  position: relative;
+  height: 80px;
+  top: 320px;
+  right: 450px;
+}
+
+.image_3_style:hover {
+  top: 325px;
+}
+
+.image_4_style {
+  position: relative;
+  height: 80px;
+  bottom: 150px;
+  right: 120px;
+}
+
+.image_4_style:hover {
+  bottom: 145px;
+}
+
+.image_5_style {
+  position: relative;
+  height: 80px;
+  top: 40px;
+  right: 250px;
+}
+
+.image_5_style:hover {
+  top: 45px;
+}
