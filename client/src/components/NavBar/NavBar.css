@@ -1,38 +1,102 @@
-nav {
-  margin: 27px auto 0;
-
+.main-nav {
+  display: flex;
   position: relative;
-  width: 590px;
-  height: 50px;
+  align-items: center;
+  justify-content: space-around;
+  overflow: hidden;
   background-color: #34495e;
-  border-radius: 8px;
-  font-size: 0;
-}
-
-nav div {
-  line-height: 50px;
-  height: 100%;
-  font-size: 15px;
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-  text-decoration: none;
-  text-transform: uppercase;
-  text-align: center;
-  color: white;
-  cursor: pointer;
-}
-
-nav .animation {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  z-index: 0;
-  transition: all 0.5s ease 0s;
-  border-radius: 8px;
+  margin: -15px 0px 5% 0px;
+  padding: 20px 40px 20px 40px;
+  border-radius: 5px;
+  border: 1px solid #263747;
 }
 
 .create_button {
-  text-decoration: none;
   color: black;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0px 10px 0px 10px;
+}
+
+.create_button:hover {
+  text-decoration: underline;
+}
+
+.button-stl:hover {
+  background-color: #263747;
+  border-radius: 5px;
+}
+
+.button-style {
+  border-radius: 5px;
+  background-color: #34495e;
+  border: 1px solid #34495e;
+  cursor: pointer;
+}
+
+.button-style:hover {
+  background-color: #263747;
+  border: 1px transparent black;
+}
+
+select {
+  min-width: 180px;
+  padding: 8px 12px;
+  color: #333333;
+  background-color: #eeeeee;
+  border: 1px solid #dddddd;
+  cursor: pointer;
+  border-radius: 5px;
+
+  /*remove default arrow*/
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /*new arrow*/
+  background-image: url("../../utils/down-arrow.png");
+  background-position: right 10px top 50%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding-right: 30px;
+}
+
+select:focus,
+select:hover {
+  outline: none;
+  border: 1px solid #bbbbbb;
+}
+
+select option {
+  background-color: #ffffff;
+}
+
+.search-nav {
+  padding: 8px 12px;
+  color: #333333;
+  background-color: #eeeeee;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+
+.search-nav:focus,
+.search-nav:hover {
+  outline: none;
+  border: 1px solid #bbbbbb;
+}
+
+.submit-button {
+  padding: 8px 12px;
+  color: black;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background-color: #34495e;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #263747;
 }

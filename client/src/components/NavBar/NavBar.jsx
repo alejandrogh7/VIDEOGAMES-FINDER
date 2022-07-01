@@ -84,20 +84,22 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
   };
 
   return (
-    <nav>
-      <div>
+    <nav className="main-nav">
+      <div className="button-stl">
         <NavLink to="/create" className="create_button">
           Create
         </NavLink>
       </div>
       <div>
-        <button onClick={(e) => handlerOnClick(e)}>
-          <img src={girar} alt="re-start" width="20px" />
+        <button onClick={(e) => handlerOnClick(e)} className="button-style">
+          <a href="#">
+            <img src={girar} alt="re-start" width="20px" />
+          </a>
         </button>
       </div>
-      <div>
+      <div className="select-box">
         <select onClick={(e) => handleFilter(e)}>
-          <option value="...">...</option>
+          <option>...</option>
           {genres &&
             genres.map((genre) => {
               return (
@@ -108,24 +110,24 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
             })}
         </select>
       </div>
-      <div>
+      <div className="box">
         <select onClick={(e) => handleSort(e)}>
-          <option value="...">...</option>
+          <option>...</option>
           <option value="All">All</option>
           <option value="Asc">Asc</option>
           <option value="Desc">Desc</option>
         </select>
       </div>
-      <div>
+      <div className="box">
         <select onClick={(e) => handleFilterCreated(e)}>
-          <option value="...">...</option>
+          <option>...</option>
           <option value="true">Created</option>
           <option value="false">Api</option>
         </select>
       </div>
-      <div>
+      <div className="box">
         <select onClick={(e) => handleRateSort(e)}>
-          <option value="...">...</option>
+          <option>...</option>
           <option value="RatingAsc">Rating Asc</option>
           <option value="RatingDesc">Rating Desc</option>
         </select>
@@ -136,11 +138,13 @@ const NavBar = ({ setCurrentPage, setOrder }) => {
           placeholder="Search videogame"
           value={input}
           onChange={(e) => handlerOnChange(e)}
+          className="search-nav"
         />
         <input
           type="submit"
           value="SEARCH"
           onSubmit={(e) => handlerOnSubmit(e)}
+          className="submit-button"
         />
       </div>
     </nav>

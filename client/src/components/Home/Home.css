@@ -1,4 +1,7 @@
 .home {
-    min-height: 100vh;
-    background: linear-gradient(90deg, #ffffff 0%, #bbbbc4 35%, #a8d1da 100%);
+  min-height: 100vh;
+  background: linear-gradient(90deg, #ffffff 0%, #bbbbc4 35%, #a8d1da 100%);
+  padding-top: 1%;
+  /* background: url("../../utils/Home/banner_home.jpg");
+  background-size: 380px; */
 }
