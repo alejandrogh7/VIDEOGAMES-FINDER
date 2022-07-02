@@ -14,6 +14,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: "https://wallpaperaccess.com/full/3291100.jpg",
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,

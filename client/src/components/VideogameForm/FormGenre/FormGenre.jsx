@@ -62,11 +62,12 @@ const FormGenre = ({ inputs, setShow, setInputs }) => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmitGenresPlatforms(e)}>
+    <form onSubmit={(e) => handleSubmitGenresPlatforms(e)} className="form">
       {/* <div>
         <NavLink to="/home">GO HOME</NavLink>
       </div> */}
       <div>
+        <h2>Select 3 genres</h2>
         <label>Add genres:</label>
         <select onChange={(e) => handleInputsGenres(e)}>
           <option>...</option>
@@ -94,6 +95,7 @@ const FormGenre = ({ inputs, setShow, setInputs }) => {
         <input
           type="submit"
           value="ADD GENRES"
+          className="submit"
           disabled={!(Object.entries(errors).length === 0)}
         />
       ) : null}

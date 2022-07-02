@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { postVideogame, getByName } from "../../../redux/actions/actions.js";
+import {
+  postVideogame,
+  getByName,
+  getVideogames,
+} from "../../../redux/actions/actions.js";
 import { v4 as uuidv4 } from "uuid";
+import "./FormCreate.css";
 
 //errors
-export function validate(inputs) {
+export function validate(inputs, videogames) {
   let errors = {};
+
+  //save names
+  let namesArr = videogames.map((game) => {
+    return game.name;
+  });
+
   //name
   if (!inputs.name) {
     errors.name = "Name is required";
-  } else if (!/^[a-zA-Z0-9_ ]{5,20}$/.test(inputs.name)) {
+  } else if (
+    !/^[a-zA-Z0-9_ ]{5,20}$/.test(inputs.name) ||
+    namesArr.includes(inputs.name)
+  ) {
     errors.name = "Name is invalid";
   }
   //description
@@ -56,9 +70,14 @@ export function validate(inputs) {
 const FormCreate = ({ inputs, setInputs, setShow }) => {
   const dispatch = useDispatch();
   const platforms = useSelector((state) => state.platforms);
+  const videogames = useSelector((state) => state.videogames);
   const [saveName, setSaveName] = useState("");
   const [errors, setErrors] = useState({});
   const [showSubmit, setShowSubmit] = useState(false);
+
+  useEffect(() => {
+    dispatch(getVideogames());
+  }, []);
 
   const handleInputsChange = (e) => {
     setShowSubmit(true);
@@ -68,10 +87,13 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
       [e.target.name]: e.target.value,
     });
     setErrors(
-      validate({
-        ...inputs,
-        [e.target.name]: e.target.value,
-      })
+      validate(
+        {
+          ...inputs,
+          [e.target.name]: e.target.value,
+        },
+        videogames
+      )
     );
     setSaveName(inputs.name);
   };
@@ -105,8 +127,10 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <NavLink to="/home">GO BACK</NavLink>
+    <form onSubmit={(e) => handleSubmit(e)} className="form">
+      <NavLink to="/home" className="back">
+        GO BACK
+      </NavLink>
       <div>
         <label>Name: </label>
         <input
@@ -115,6 +139,7 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
           value={inputs.name}
           placeholder="Game"
           onChange={(e) => handleInputsChange(e)}
+          className="input"
         />
         {errors.name && <p className="danger">{errors.name}</p>}
       </div>
@@ -126,11 +151,14 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
           value={inputs.description}
           placeholder="Is a wonderful game where you can explore a fantasy world and do a lot of tests"
           onChange={(e) => handleInputsChange(e)}
+          className="input"
         />
         {errors.description && <p className="danger">{errors.description}</p>}
       </div>
       <div>
-        <label>Rating: </label>
+        <label>
+          Rating: <output htmlFor="rating">{inputs.rating}</output>
+        </label>
         <input
           type="range"
           name="rating"
@@ -139,8 +167,9 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
           step="0.01"
           value={inputs.rating}
           onChange={(e) => handleInputsChange(e)}
+          className="input"
         />
-        <output htmlFor="rating">{inputs.rating}</output>
+
         {errors.rating && <p className="danger">{errors.rating}</p>}
       </div>
       <div>
@@ -150,44 +179,49 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
           name="released"
           value={inputs.released}
           onChange={(e) => handleInputsChange(e)}
+          className="input"
         />
         {errors.released && <p className="danger">{errors.released}</p>}
       </div>
       <div>
-        <div>
-          <label>Platforms:</label>
-          <select onChange={(e) => handleInputsPlatforms(e)}>
-            <option>...</option>
-            {platforms &&
-              platforms.map((platform) => {
-                return (
-                  <option value={platform.name} key={platform.id}>
-                    {platform.name}
-                  </option>
-                );
-              })}
-          </select>
-          {errors.platforms && <p className="danger">{errors.platforms}</p>}
-        </div>
-        <div>
-          {/* {inputs.platforms &&
+        <label>Platforms:</label>
+        <select onChange={(e) => handleInputsPlatforms(e)}>
+          <option>...</option>
+          {platforms &&
             platforms.map((platform) => {
-              if (inputs.platforms.includes(platform.name))
-                return <p key={platform.id}>{platform.name}</p>;
-            })} */}
+              return (
+                <option value={platform.name} key={platform.id}>
+                  {platform.name}
+                </option>
+              );
+            })}
+        </select>
+        {errors.platforms && <p className="danger">{errors.platforms}</p>}
+      </div>
+      <div>
+        {showSubmit ? (
+          <input
+            type="submit"
+            value="Create"
+            className="submit"
+            disabled={!(Object.entries(errors).length === 0)}
+          />
+        ) : null}
+      </div>
+      <div className="preview">
+        <h2>PREVIEW:</h2>
+        <div>NAME: {inputs.name}</div>
+        <p>DESCRIPTION: {inputs.description}</p>
+        <div>RATING: {inputs.rating}</div>
+        <div>RELEASED: {inputs.released}</div>
+        <div>
+          PLATFORMS:
           {inputs.platforms &&
             inputs.platforms.map((plat) => {
-              return <p key={plat.platform.name}>{plat.platform.name}</p>;
+              return <li key={plat.platform.name}>{plat.platform.name}</li>;
             })}
         </div>
       </div>
-      {showSubmit ? (
-        <input
-          type="submit"
-          value="Create"
-          disabled={!(Object.entries(errors).length === 0)}
-        />
-      ) : null}
     </form>
   );
 };

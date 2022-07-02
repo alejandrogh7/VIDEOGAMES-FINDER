@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getById } from "../../redux/actions/actions.js";
+import "./Detail.css";
 
 const Detail = () => {
   const { id } = useParams();
@@ -13,28 +14,44 @@ const Detail = () => {
   }, []);
 
   return (
-    <div>
-      <NavLink to="/home">GO BACK</NavLink>
-      <h1>{videogame.name}</h1>
-      <img
-        src={videogame.background_image}
-        alt={videogame.name}
-        width="500px"
-      />
-      <h2>released: {videogame.released}</h2>
-      <div dangerouslySetInnerHTML={{ __html: videogame.description }}></div>
-      <h1>Platforms</h1>
-      {videogame.platforms
-        ? videogame.platforms.map((vg) => {
-            return <div key={vg.platform.id}>{vg.platform.name}</div>;
-          })
-        : null}
-      <h1>Stores</h1>
-      {/* {videogame.stores
+    <div className="container-details">
+      <NavLink to="/home" className="back">
+        GO BACK
+      </NavLink>
+      <div className="header-details">
+        <h1>{videogame.name}</h1>
+        <img
+          src={
+            videogame.background_image
+              ? videogame.background_image
+              : videogame.image
+          }
+          alt={videogame.name}
+          width="500px"
+          className="img-detail"
+        />
+      </div>
+
+      <h2 className="released">released: {videogame.released}</h2>
+      <div
+        dangerouslySetInnerHTML={{ __html: videogame.description }}
+        className="desciption"
+      ></div>
+      <h2 className="released">Platforms</h2>
+      <div className="plat">
+        {videogame.platforms
+          ? videogame.platforms.map((vg) => {
+              return <div key={vg.platform.id}>{vg.platform.name}</div>;
+            })
+          : null}
+      </div>
+
+      {/* <h1>Stores</h1>
+       {videogame.stores
         ? videogame.stores.map((st) => {
             return <div key={st.store.id}>{st.store.name}</div>;
           })
-        : null} */}
+        : null}  */}
     </div>
   );
 };

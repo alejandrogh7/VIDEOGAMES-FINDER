@@ -21,6 +21,7 @@
 
 .create_button:hover {
   text-decoration: underline;
+  color: #cccccc;
 }
 
 .button-stl:hover {
@@ -105,4 +106,5 @@ select option {
 
 .submit-button:hover {
   background-color: #263747;
+  color: #cccccc;
 }

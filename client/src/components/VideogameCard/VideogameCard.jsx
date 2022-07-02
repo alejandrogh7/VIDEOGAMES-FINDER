@@ -13,8 +13,8 @@ const VideogameCard = (props) => {
           <h1>{props.name}</h1>
         </NavLink>
         <p>
-          <div>Rating: {props.rating}</div>
-          <div>Released: {props.released}</div>
+          Rating: {props.rating}<br/>
+          Released: {props.released}
         </p>
         {props.genre.map((genr) => {
           return (
