@@ -95,6 +95,12 @@ select option {
   border-radius: 5px;
   margin-left: 10px;
   cursor: pointer;
+
+  background-image: url("../../utils/loupe.png");
+  background-position: right 5px top 50%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding-right: 30px;
 }
 
 .submit-button:hover {

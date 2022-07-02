@@ -34,21 +34,26 @@ const Home = () => {
         totalData={totalData}
         dataPerPage={dataPerPage}
         setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
       />
-      {currentData &&
-        currentData.map((videogame) => {
-          return (
-            <VideogameCard
-              key={videogame.id}
-              id={videogame.id}
-              name={videogame.name}
-              image={videogame.image}
-              released={videogame.released}
-              rating={videogame.rating}
-              genre={videogame.genres.map((genre) => genre.name)}
-            />
-          );
-        })}
+      <div className="gc">
+        <div className="container">
+          {currentData &&
+            currentData.map((videogame) => {
+              return (
+                <VideogameCard
+                  key={videogame.id}
+                  id={videogame.id}
+                  name={videogame.name}
+                  image={videogame.image}
+                  released={videogame.released}
+                  rating={videogame.rating}
+                  genre={videogame.genres.map((genre) => genre.name)}
+                />
+              );
+            })}
+        </div>
+      </div>
     </div>
   );
 };
