@@ -114,6 +114,7 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShowSubmit(false);
     setShowLoader(true);
     await dispatch(postVideogame(inputs));
     //console.log(saveName);

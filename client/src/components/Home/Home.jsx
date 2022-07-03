@@ -39,7 +39,9 @@ const Home = () => {
       />
       <div className="gc">
         <div className="container">
-          {currentData && videogames.length > 0 ? (
+          {currentData &&
+          videogames.length > 0 &&
+          typeof videogames === "object" ? (
             currentData.map((videogame) => {
               return (
                 <VideogameCard

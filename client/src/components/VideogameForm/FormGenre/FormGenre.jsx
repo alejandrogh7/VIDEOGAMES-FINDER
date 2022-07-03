@@ -7,7 +7,7 @@ export function validate(inputs) {
   let errors = {};
   if (!inputs.genre) {
     errors.genre = "Genre is required";
-  } else if (inputs.genre.length < 2) {
+  } else if (inputs.genre.length < 3) {
     errors.genre = "Select at least three Genres";
   }
 
@@ -37,7 +37,7 @@ const FormGenre = ({ inputs, setShow, setInputs }) => {
         genre: [...inputs.genre, e.target.value],
       })
     );
-    if (inputs.genre.length >= 2) {
+    if (inputs.genre.length === 2) {
       setShowSubmit(true);
     }
   };

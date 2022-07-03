@@ -1,11 +1,14 @@
 import React from "react";
 import loader from "../../utils/Loader/rocket.png";
+import "./Loader.css";
+{
+  /* <img src={loader} alt="rocket" width="100px" /> */
+}
 
 const Loader = () => {
   return (
-    <div>
-      <img src={loader} alt="pacman" width="100px" />
-      <h2>Loading...</h2>
+    <div className="contenedor_loader">
+      <div className="loader"></div>
     </div>
   );
 };
