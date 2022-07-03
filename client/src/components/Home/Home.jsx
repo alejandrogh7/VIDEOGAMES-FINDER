@@ -5,6 +5,7 @@ import { getVideogames } from "../../redux/actions/actions.js";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../Pagination/Pagination.jsx";
 import "./Home.css";
+import Loader from "../Loader/Loader.jsx";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const Home = () => {
       />
       <div className="gc">
         <div className="container">
-          {currentData &&
+          {currentData && videogames.length > 0 ? (
             currentData.map((videogame) => {
               return (
                 <VideogameCard
@@ -51,7 +52,10 @@ const Home = () => {
                   genre={videogame.genres.map((genre) => genre.name)}
                 />
               );
-            })}
+            })
+          ) : (
+            <Loader />
+          )}
         </div>
       </div>
     </div>

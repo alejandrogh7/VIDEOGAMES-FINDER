@@ -3,6 +3,7 @@ import { getGenres, getPlatforms } from "../../redux/actions/actions.js";
 import { useDispatch } from "react-redux";
 import FormCreate from "./FormCreate/FormCreate.jsx";
 import FormGenre from "./FormGenre/FormGenre.jsx";
+import "./VideogameForm.css";
 
 const VideogameForm = () => {
   const dispatch = useDispatch();
@@ -24,13 +25,17 @@ const VideogameForm = () => {
 
   if (show) {
     return (
-      <FormCreate inputs={inputs} setInputs={setInputs} setShow={setShow} />
+      <div className="form-container">
+        <FormCreate inputs={inputs} setInputs={setInputs} setShow={setShow} />
+      </div>
     );
   }
 
   if (!show) {
     return (
-      <FormGenre inputs={inputs} setInputs={setInputs} setShow={setShow} />
+      <div className="form-container">
+        <FormGenre inputs={inputs} setInputs={setInputs} setShow={setShow} />
+      </div>
     );
   }
 

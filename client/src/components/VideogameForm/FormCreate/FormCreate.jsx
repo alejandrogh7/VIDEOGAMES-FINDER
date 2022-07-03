@@ -8,6 +8,7 @@ import {
 } from "../../../redux/actions/actions.js";
 import { v4 as uuidv4 } from "uuid";
 import "./FormCreate.css";
+import Loader from "../../Loader/Loader.jsx";
 
 //errors
 export function validate(inputs, videogames) {
@@ -74,6 +75,7 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
   const [saveName, setSaveName] = useState("");
   const [errors, setErrors] = useState({});
   const [showSubmit, setShowSubmit] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
     dispatch(getVideogames());
@@ -112,6 +114,7 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShowLoader(true);
     await dispatch(postVideogame(inputs));
     //console.log(saveName);
     await dispatch(getByName(saveName));
@@ -207,6 +210,7 @@ const FormCreate = ({ inputs, setInputs, setShow }) => {
             disabled={!(Object.entries(errors).length === 0)}
           />
         ) : null}
+        {showLoader ? <Loader /> : null}
       </div>
       <div className="preview">
         <h2>PREVIEW:</h2>
