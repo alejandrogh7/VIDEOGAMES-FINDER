@@ -17,7 +17,7 @@ import {
 
 export const getVideogames = () => {
   return async (dispatch) => {
-    const response = await axios.get("http://localhost:3001/videogames/");
+    const response = await axios.get("/videogames/");
     return dispatch({
       type: GET_VIDEOGAMES,
       payload: response.data,
@@ -27,9 +27,7 @@ export const getVideogames = () => {
 
 export const getByName = (name) => {
   return async (dispatch) => {
-    const response = await axios.get(
-      `http://localhost:3001/videogames?name=${name}`
-    );
+    const response = await axios.get(`/videogames?name=${name}`);
     return dispatch({
       type: GET_BY_NAME,
       payload: response.data,
@@ -39,17 +37,14 @@ export const getByName = (name) => {
 
 export const postVideogame = (game) => {
   return async () => {
-    const response = await axios.post(
-      "http://localhost:3001/videogames/",
-      game
-    );
+    const response = await axios.post("/videogames/", game);
     return response;
   };
 };
 
 export const getById = (id) => {
   return async (dispatch) => {
-    const response = await axios.get(`http://localhost:3001/videogames/${id}`);
+    const response = await axios.get(`/videogames/${id}`);
     return dispatch({
       type: GET_BY_ID,
       payload: response.data,
@@ -71,7 +66,7 @@ export const orderDesc = () => {
 
 export const getGenres = () => {
   return async (dispatch) => {
-    const response = await axios.get("http://localhost:3001/genres");
+    const response = await axios.get("/genres");
     return dispatch({
       type: GET_GENRES,
       payload: response.data,
@@ -108,9 +103,7 @@ export const orderRatingDesc = () => {
 export const postGenre = (videoId, genreId) => {
   return async (dispatch) => {
     //console.log([videoId, genreId]);
-    const response = await axios.post(
-      `http://localhost:3001/videogames/${videoId}/${genreId}`
-    );
+    const response = await axios.post(`/videogames/${videoId}/${genreId}`);
     return dispatch({
       type: POST_GENRE,
       payload: response,
@@ -126,7 +119,7 @@ export const clearVideogames = () => {
 
 export const getPlatforms = () => {
   return async (dispatch) => {
-    const response = await axios.get("http://localhost:3001/genres/platforms/");
+    const response = await axios.get("/genres/platforms/");
     return dispatch({
       type: GET_PLATFORMS,
       payload: response.data,
